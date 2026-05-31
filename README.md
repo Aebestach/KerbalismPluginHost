@@ -42,9 +42,12 @@ Each hosted mod ships a manifest next to its `PluginData` folder, for example `G
 
 ## Hosted mods
 
-* [KerbalismNFE](https://github.com/Aebestach/KerbalismNFE)
-* [KerbalismSystemHeat](https://github.com/Aebestach/KerbalismSystemHeat)
-* [KerbalismDynamicRadiation](https://github.com/Aebestach/KerbalismDynamicRadiation)
+Maintained in [KerbalismSystemHeatSupport](https://github.com/Aebestach/KerbalismSystemHeatSupport) (one repo; four separate `GameData` installs):
+
+* **zKerbalismSystemHeat** — SystemHeat integration
+* **zKerbalismFFT** — Far Future Technologies integration
+* **zKerbalismNFE** — Near Future Electrical capacitors
+* **zKerbalismDynamicRadiation** — optional dynamic radiation (requires SystemHeat and/or FFT patches)
 
 ## Building
 
