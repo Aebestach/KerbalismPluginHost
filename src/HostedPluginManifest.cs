@@ -18,6 +18,7 @@ namespace KerbalismPluginHost
 		public string WarnMessageLoc;
 		public string QuitButtonLoc;
 		public List<string> RequiredAssemblies = new List<string>();
+		public List<string> OptionalAssemblies = new List<string>();
 		public bool Loaded;
 		public string LoadError;
 
@@ -67,7 +68,13 @@ namespace KerbalismPluginHost
 				foreach (XmlNode node in assemblyNodes)
 				{
 					string name = GetAttribute(node, "name");
-					if (!string.IsNullOrEmpty(name))
+					if (string.IsNullOrEmpty(name))
+						continue;
+
+					bool optional = string.Equals(GetAttribute(node, "optional"), "true", System.StringComparison.OrdinalIgnoreCase);
+					if (optional)
+						manifest.OptionalAssemblies.Add(name);
+					else
 						manifest.RequiredAssemblies.Add(name);
 				}
 			}
