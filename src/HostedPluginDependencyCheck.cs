@@ -14,14 +14,22 @@ namespace KerbalismPluginHost
 					continue;
 
 				if (!HostedPluginLoader.AreDependenciesMet(manifest))
-					ShowWarning(manifest);
+				{
+					ShowWarning(manifest, null);
+					continue;
+				}
+
+				if (!string.IsNullOrEmpty(manifest.LoadError))
+					ShowWarning(manifest, manifest.LoadError);
 			}
 		}
 
-		private static void ShowWarning(HostedPluginManifest manifest)
+		private static void ShowWarning(HostedPluginManifest manifest, string loadErrorDetail)
 		{
 			string title = LocalizeOrFallback(manifest.WarnTitleLoc, manifest.Id + ": dependency missing");
 			string message = LocalizeOrFallback(manifest.WarnMessageLoc, manifest.Id + " could not load. Check mod dependencies and restart.");
+			if (!string.IsNullOrEmpty(loadErrorDetail))
+				message += "\n\n" + loadErrorDetail;
 			string quit = LocalizeOrFallback(manifest.QuitButtonLoc, "Quit");
 
 			PopupDialog.SpawnPopupDialog(

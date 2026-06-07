@@ -16,18 +16,18 @@ Copy `GameData/zKerbalismPluginHost` into your KSP `GameData` folder. Build outp
 
 ## Manifest format
 
-Each hosted mod ships a manifest next to its `PluginData` folder, for example `GameData/zKerbalismNFE/zKerbalismNFE.host.xml`:
+Each hosted mod ships a manifest next to its `PluginData` folder, for example `GameData/zKerbalismNative/zKerbalismNative.host.xml`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <KerbalismHostedPlugin>
-  <Plugin id="KerbalismNFE"
-          assembly="zKerbalismNFE"
-          dll="zKerbalismNFE.dll"
-          initType="KerbalismNFE.KerbalismNFECoreInit" />
-  <RequireKerbalism warnTitleLoc="#LOC_KerbalismNFE_DependencyNotFound_Title"
-                    warnMessageLoc="#LOC_KerbalismNFE_DependencyNotFound_Msg"
-                    quitButtonLoc="#LOC_KerbalismNFE_Quit" />
+  <Plugin id="KerbalismNative"
+          assembly="zKerbalismNative"
+          dll="zKerbalismNative.dll"
+          initType="KerbalismNative.KerbalismNativeCoreInit" />
+  <RequireKerbalism warnTitleLoc="#LOC_KerbalismBridge_KerbalismNotFound_Title"
+                    warnMessageLoc="#LOC_KerbalismBridge_KerbalismNotFound_Msg"
+                    quitButtonLoc="#LOC_KerbalismBridge_Quit" />
   <RequireAssembly name="NearFutureElectrical" />
 </KerbalismHostedPlugin>
 ```
@@ -42,12 +42,15 @@ Each hosted mod ships a manifest next to its `PluginData` folder, for example `G
 
 ## Hosted mods
 
-Maintained in [KerbalismSystemHeatSupport](https://github.com/Aebestach/KerbalismSystemHeatSupport) (one repo; four separate `GameData` installs):
+Maintained in [KerbalismBridge](https://github.com/Aebestach/KerbalismBridge) (one repo; separate `GameData` installs):
 
-* **zKerbalismSystemHeat** — SystemHeat integration
+* **zKerbalismBridge** — shared runtime (background thermal sim, editor sim)
+* **zKerbalismProcess** — Process layer (converters, harvesters, radiators)
+* **zKerbalismNative** — Native layer (fission, NFE capacitors, SpaceDust, …)
 * **zKerbalismFFT** — Far Future Technologies integration
-* **zKerbalismNFE** — Near Future Electrical capacitors
-* **zKerbalismDynamicRadiation** — optional dynamic radiation (requires SystemHeat and/or FFT patches)
+* **zKerbalismDynamicRadiation** — optional dynamic radiation (requires Native and/or FFT patches)
+
+Install **zKerbalismBridge** plus **zKerbalismProcess** and/or **zKerbalismNative** for SystemHeat integration. Legacy folders `zKerbalismSystemHeat` and `zKerbalismNFE` are not part of Kerbalism Bridge.
 
 ## Building
 
